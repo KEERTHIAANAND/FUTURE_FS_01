@@ -52,12 +52,8 @@ const AboutAndTools = () => (
       </p>
       <div className="flex gap-12 mt-2">
         <div>
-          <div className="text-4xl font-extrabold font-mono text-emerald-400 drop-shadow-sm">45+</div>
+          <div className="text-4xl font-bold text-white drop-shadow-sm">45+</div>
           <div className="text-zinc-400 text-sm mt-1 font-sans">Project done</div>
-        </div>
-        <div>
-          <div className="text-3xl font-bold font-mono text-sky-300 drop-shadow-sm">10+</div>
-          <div className="text-zinc-400 text-sm mt-1 font-sans">Years of experience</div>
         </div>
       </div>
       {/* Logo at bottom right */}
