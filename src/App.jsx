@@ -13,6 +13,9 @@ import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import AboutAndTools from "./components/AboutAndTools";
 import PortfolioHighlights from "./components/PortfolioHighlights";
+import EducationSection from "./components/EducationSection";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 const App = () => {
     return (
@@ -20,7 +23,10 @@ const App = () => {
             <Header />
             <HeroSection />
             <AboutAndTools />
+            <EducationSection />
             <PortfolioHighlights />
+            <Contact />
+            <Footer />
         </>
     )
 }
