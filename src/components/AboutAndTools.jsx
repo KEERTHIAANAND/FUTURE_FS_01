@@ -75,7 +75,7 @@ const AboutAndTools = () => (
         {tools.map((tool) => (
           <div
             key={tool.name}
-            className="flex items-center gap-4 bg-zinc-900/80 border border-zinc-800 rounded-xl p-4 shadow hover:shadow-lg transition"
+            className="flex items-center gap-4 bg-zinc-900/80 border-2 border-zinc-700 rounded-xl p-4 shadow transition-all duration-200 hover:border-emerald-400 hover:shadow-emerald-400/20 hover:bg-zinc-800"
           >
             <img src={tool.icon} alt={tool.name} className="w-10 h-10" />
             <div>

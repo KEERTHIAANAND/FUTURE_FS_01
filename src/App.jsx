@@ -12,6 +12,7 @@
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import AboutAndTools from "./components/AboutAndTools";
+import PortfolioHighlights from "./components/PortfolioHighlights";
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
             <Header />
             <HeroSection />
             <AboutAndTools />
+            <PortfolioHighlights />
         </>
     )
 }
