@@ -10,10 +10,16 @@
  */
 
 import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+import AboutAndTools from "./components/AboutAndTools";
 
 const App = () => {
     return (
-        <Header />
+        <>
+            <Header />
+            <HeroSection />
+            <AboutAndTools />
+        </>
     )
 }
 

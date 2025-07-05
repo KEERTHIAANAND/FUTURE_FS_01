@@ -35,11 +35,6 @@ const Navbar = ({navOpen, onNavClick}) => {
       className: 'nav-link'
       
     },
-    {
-      label: 'Contact',
-      link: '#contact',
-      className: 'nav-link'
-    }
   ];
 
   // Check if screen is mobile
