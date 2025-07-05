@@ -42,7 +42,7 @@ const socials = [
 ];
 
 const Contact = () => (
-  <section className="w-full max-w-6xl mx-auto px-4 py-20 flex flex-col md:flex-row gap-12 items-center justify-between">
+  <section id="contact" className="w-full max-w-6xl mx-auto px-4 py-20 flex flex-col md:flex-row gap-12 items-center justify-between">
     {/* Left Side */}
     <div className="flex-1 flex flex-col items-start justify-center gap-6">
       <div>

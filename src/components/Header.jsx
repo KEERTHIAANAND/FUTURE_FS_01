@@ -80,10 +80,23 @@ const Header = () => {
                 <Navbar navOpen={navOpen} onNavClick={() => setNavOpen(false)}/>
             </div>
 
-            <a href="#contact" 
-            className="btn btn-secondary max-md:hidden md:justify-self-end"
+            <a
+              href="#contact"
+              className="btn btn-secondary max-md:hidden md:justify-self-end"
+              onClick={e => {
+                e.preventDefault();
+                const targetSection = document.querySelector('#contact');
+                if (targetSection) {
+                  const headerHeight = 48 + 24; // h-12 + top-6
+                  const targetPosition = targetSection.offsetTop - headerHeight;
+                  window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
             >
-                Contact Me
+              Contact Me
             </a>
 
         </div>

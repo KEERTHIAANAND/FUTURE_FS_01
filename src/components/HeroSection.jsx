@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <section className="w-full max-w-6xl mx-auto min-h-[calc(100vh-48px)] px-4 flex flex-col md:flex-row items-center justify-between gap-8 items-center">
+    <section id="home" className="w-full max-w-6xl mx-auto min-h-[calc(100vh-48px)] px-4 flex flex-col md:flex-row items-center justify-between gap-8 items-center">
       {/* Left Side */}
       <div className="flex-1 flex flex-col items-start gap-6">
         {/* Status Row */}
@@ -14,9 +14,9 @@ const HeroSection = () => {
           />
           <span className="flex items-center gap-1 text-sm text-zinc-400">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Available for work
-          </span>
-        </div>
+            Available for work.
+          </span>     
+        </div> 
         {/* Heading */}
         <h1 className="text-4xl md:text-5xl font-bold text-zinc-100 leading-tight">
           Building Scalable<br />

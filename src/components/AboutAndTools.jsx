@@ -44,7 +44,7 @@ const tools = [
 ];
 
 const AboutAndTools = () => (
-  <section className="w-full max-w-6xl mx-auto px-4 flex flex-col gap-16 mt-12">
+  <section id="about" className="w-full max-w-6xl mx-auto px-4 flex flex-col gap-16 mt-12">
     {/* Intro Card */}
     <div className="relative bg-zinc-800/90 rounded-2xl shadow-xl p-8 md:p-12 flex flex-col items-start max-w-3xl mx-auto overflow-hidden">
       <p className="text-lg md:text-xl text-zinc-100 mb-8 font-serif">

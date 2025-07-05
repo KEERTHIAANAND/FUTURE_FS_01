@@ -25,16 +25,10 @@ const Navbar = ({navOpen, onNavClick}) => {
       className: 'nav-link'
     },
     {
-      label: 'Work',
-      link: '#work',
+      label: 'Projects',
+      link: '#projects',
       className: 'nav-link'
-    },
-    {
-      label: 'Reviews',
-      link: '#reviews',
-      className: 'nav-link'
-      
-    },
+    }
   ];
 
   // Check if screen is mobile
