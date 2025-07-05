@@ -19,23 +19,16 @@ const HeroSection = () => {
         </div> 
         {/* Heading */}
         <h1 className="text-4xl md:text-5xl font-bold text-zinc-100 leading-tight">
-          Building Scalable<br />
-          Modern Websites<br />
-          for the Future
+          Learning. Building. Growing — One Line of Code at a Time.
         </h1>
         {/* Buttons */}
         <div className="flex gap-3 mt-2">
           <a
-            href="#"
-            className="px-5 py-2.5 bg-sky-500 hover:bg-sky-600 text-white font-medium rounded-lg shadow transition"
+            href="/keerthi_resume.pdf"
+            download
+            className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg shadow transition"
           >
             Download CV <span className="ml-1">&#8595;</span>
-          </a>
-          <a
-            href="#"
-            className="px-5 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-medium rounded-lg shadow border border-zinc-700 transition flex items-center gap-1"
-          >
-            Scroll down <span>&#8595;</span>
           </a>
         </div>
       </div>
