@@ -17,7 +17,7 @@ const education = [
 
 const EducationSection = () => (
   <section className="w-full max-w-3xl mx-auto px-4 mt-16 mb-8">
-    <h2 className="text-2xl md:text-3xl font-bold text-zinc-100 mb-8">Education</h2>
+    <h2 className="text-xl md:text-3xl font-bold text-zinc-100 mb-8">EDUCATION</h2>
     <div className="relative pl-6 border-l-2 border-emerald-500/40">
       {education.map((edu, idx) => (
         <div key={idx} className="relative mb-12 last:mb-0 group">
