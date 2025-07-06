@@ -63,7 +63,7 @@ const Footer = () => (
       </div>
     </div>
     <div className="w-full text-center text-zinc-500 text-sm pb-6">
-      © 2024 <span className="font-semibold text-zinc-300">codewithsadee</span>
+      © 2025 <span className="font-semibold text-zinc-300 gap-30">Keerthi Aanand</span>
     </div>
   </footer>
 );
