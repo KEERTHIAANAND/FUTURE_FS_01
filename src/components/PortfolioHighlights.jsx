@@ -44,7 +44,7 @@ const PortfolioHighlights = () => (
             <div>
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-semibold text-zinc-100">{project.title}</h3>
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2 px-3 py-1 rounded-lg bg-sky-500 hover:bg-sky-600 transition text-white font-semibold text-sm">
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2 px-3 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-600 transition text-white font-semibold text-sm">
                   Demo
                 </a>
               </div>
