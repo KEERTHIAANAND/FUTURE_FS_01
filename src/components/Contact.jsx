@@ -180,9 +180,4 @@ const Contact = () => {
   );
 };
 
-// Add tick animation CSS
-const style = document.createElement('style');
-style.innerHTML = `@keyframes tick { 0% { stroke-dashoffset: 16; } 100% { stroke-dashoffset: 0; } } .animated-tick { stroke: #FFD700; stroke-width: 3; fill: none; stroke-dasharray: 16; stroke-dashoffset: 16; animation: tick 0.5s ease forwards; }`;
-document.head.appendChild(style);
-
 export default Contact; 

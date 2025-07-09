@@ -2,9 +2,30 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// MongoDB connection
+const mongoURI = 'mongodb+srv://keerthiaanand77:8wswspfbFRFdVgQB@cluster0.dvbsnoc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+mongoose.connect(mongoURI);
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+// Contact Schema and Model
+const contactSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  message: { type: String, required: true },
+  date: { type: Date, default: Date.now },
+});
+const Contact = mongoose.model('Contact', contactSchema);
 
 // Middleware
 app.use(cors());
@@ -23,6 +44,8 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
+    // Save to MongoDB
+    await Contact.create({ name, email, message });
     // Set up transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail',

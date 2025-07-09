@@ -132,3 +132,16 @@ body {
 .navbar.active{
     @apply opacity-100 scale-100 blur-0 visible
 }
+
+@keyframes tick {
+  0% { stroke-dashoffset: 16; }
+  100% { stroke-dashoffset: 0; }
+}
+.animated-tick {
+  stroke: #FFD700;
+  stroke-width: 3;
+  fill: none;
+  stroke-dasharray: 16;
+  stroke-dashoffset: 16;
+  animation: tick 0.5s ease forwards;
+}
