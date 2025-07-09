@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const socials = [
   {
@@ -30,67 +30,115 @@ const socials = [
   },
 ];
 
-const Contact = () => (
-  <section id="contact" className="w-full max-w-6xl mx-auto px-4 py-20 flex flex-col md:flex-row gap-12 items-center justify-between">
-    {/* Left Side */}
-    <div className="flex-1 flex flex-col items-start justify-center gap-6">
-      <div>
-        <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mb-2">Contact me for<br />collaboration</h2>
-        <p className="text-zinc-400 mb-8 max-w-md">
-          Reach out today to discuss your project needs and start collaborating on something amazing!
-        </p>
-      </div>
-      <div className="flex gap-4 mt-4">
-        {socials.map((s) => (
-          <a
-            key={s.name}
-            href={s.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 transition"
-            aria-label={s.name}
-          >
-            {s.icon}
-          </a>
-        ))}
-      </div>
-    </div>
-    {/* Right Side - Contact Form */}
-    <form className="flex-1 w-full max-w-xl bg-transparent flex flex-col gap-4">
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="flex-1">
-          <label className="block text-zinc-300 mb-1">Name</label>
-          <input
-            type="text"
-            placeholder="Jack"
-            className="w-full rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          />
+const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus(null);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus(data.error || "Failed to send message.");
+      }
+    } catch (error) {
+      setStatus("Failed to send message. Please try again later.");
+    }
+  };
+
+  return (
+    <section id="contact" className="w-full max-w-6xl mx-auto px-4 py-20 flex flex-col md:flex-row gap-12 items-center justify-between">
+      {/* Left Side */}
+      <div className="flex-1 flex flex-col items-start justify-center gap-6">
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mb-2">Contact me for<br />collaboration</h2>
+          <p className="text-zinc-400 mb-8 max-w-md">
+            Reach out today to discuss your project needs and start collaborating on something amazing!
+          </p>
         </div>
-        <div className="flex-1">
-          <label className="block text-zinc-300 mb-1">Email</label>
-          <input
-            type="email"
-            placeholder="jack@example.com"
-            className="w-full rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          />
+        <div className="flex gap-4 mt-4">
+          {socials.map((s) => (
+            <a
+              key={s.name}
+              href={s.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 transition"
+              aria-label={s.name}
+            >
+              {s.icon}
+            </a>
+          ))}
         </div>
       </div>
-      <div>
-        <label className="block text-zinc-300 mb-1">Message</label>
-        <textarea
-          rows={4}
-          placeholder="Hello!"
-          className="w-full rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full mt-2 py-3 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-lg transition"
+      {/* Right Side - Contact Form */}
+      <form
+        className="flex-1 w-full max-w-xl bg-transparent flex flex-col gap-4"
+        onSubmit={handleSubmit}
       >
-        Submit
-      </button>
-    </form>
-  </section>
-);
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1">
+            <label className="block text-zinc-300 mb-1">Name</label>
+            <input
+              type="text"
+              placeholder="Jack"
+              className="w-full rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="flex-1">
+            <label className="block text-zinc-300 mb-1">Email</label>
+            <input
+              type="email"
+              placeholder="jack@example.com"
+              className="w-full rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        <div>
+          <label className="block text-zinc-300 mb-1">Message</label>
+          <textarea
+            rows={4}
+            placeholder="Hello!"
+            className="w-full rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full mt-2 py-3 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-lg transition"
+        >
+          Submit
+        </button>
+        {status && (
+          <div className="mt-2 text-center text-emerald-400">{status}</div>
+        )}
+      </form>
+    </section>
+  );
+};
 
 export default Contact; 
