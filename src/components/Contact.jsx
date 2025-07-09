@@ -35,10 +35,14 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [flashMessage, setFlashMessage] = useState("");
+  const [flashType, setFlashType] = useState("success"); // 'success' or 'error'
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus(null);
+    // Don't show any flash yet, wait for API response
 
     try {
       const response = await fetch("http://localhost:5000/api/contact", {
@@ -50,20 +54,58 @@ const Contact = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setStatus("Message sent successfully!");
+        setFlashMessage("Message sent successfully!");
+        setFlashType("success");
+        setShowSuccess(true);
         setName("");
         setEmail("");
         setMessage("");
+        setTimeout(() => {
+          setShowSuccess(false);
+          setFlashMessage("");
+        }, 2000); // 2 seconds
       } else {
-        setStatus(data.error || "Failed to send message.");
+        setFlashMessage(data.error || "Failed to send message.");
+        setFlashType("error");
+        setShowSuccess(true);
+        setTimeout(() => {
+          setShowSuccess(false);
+          setFlashMessage("");
+        }, 2000);
       }
     } catch (error) {
-      setStatus("Failed to send message. Please try again later.");
+      setFlashMessage("Failed to send message. Please try again later.");
+      setFlashType("error");
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        setFlashMessage("");
+      }, 2000);
     }
   };
 
   return (
     <section id="contact" className="w-full max-w-6xl mx-auto px-4 py-20 flex flex-col md:flex-row gap-12 items-center justify-between">
+      {/* Flash Message */}
+      {showSuccess && (
+        <div className={"fixed top-8 left-1/2 transform -translate-x-1/2 bg-zinc-900 border px-6 py-4 rounded-lg flex items-center gap-3 shadow-lg z-50"}
+          style={{ borderColor: '#FFD700', color: '#FFD700' }}>
+          {flashType === "success" ? (
+            <svg width="32" height="32" viewBox="0 0 24 24">
+              <polyline
+                className="animated-tick"
+                points="6 12 10 16 18 8"
+              />
+            </svg>
+          ) : (
+            <svg width="32" height="32" viewBox="0 0 24 24">
+              <line x1="6" y1="6" x2="18" y2="18" stroke="#ef4444" strokeWidth="3"/>
+              <line x1="6" y1="18" x2="18" y2="6" stroke="#ef4444" strokeWidth="3"/>
+            </svg>
+          )}
+          <span className="font-semibold text-lg">{flashMessage}</span>
+        </div>
+      )}
       {/* Left Side */}
       <div className="flex-1 flex flex-col items-start justify-center gap-6">
         <div>
@@ -133,12 +175,14 @@ const Contact = () => {
         >
           Submit
         </button>
-        {status && (
-          <div className="mt-2 text-center text-emerald-400">{status}</div>
-        )}
       </form>
     </section>
   );
 };
+
+// Add tick animation CSS
+const style = document.createElement('style');
+style.innerHTML = `@keyframes tick { 0% { stroke-dashoffset: 16; } 100% { stroke-dashoffset: 0; } } .animated-tick { stroke: #FFD700; stroke-width: 3; fill: none; stroke-dasharray: 16; stroke-dashoffset: 16; animation: tick 0.5s ease forwards; }`;
+document.head.appendChild(style);
 
 export default Contact; 
